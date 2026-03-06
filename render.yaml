@@ -1,0 +1,58 @@
+services:
+  - type: web
+    name: autofilter-bot
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python3 bot.py
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      # Bot Configuration
+      - key: API_ID
+        sync: false
+      - key: API_HASH
+        sync: false
+      - key: BOT_TOKEN
+        sync: false
+      
+      # Database
+      - key: DATABASE_URI
+        sync: false
+      - key: DATABASE_NAME
+        value: Cluster0
+      - key: COLLECTION_NAME
+        value: royal_files
+      
+      # Admin & Channels
+      - key: ADMINS
+        sync: false
+      - key: CHANNELS
+        sync: false
+      - key: LOG_CHANNEL
+        sync: false
+      - key: BIN_CHANNEL
+        sync: false
+      - key: PREMIUM_LOGS
+        sync: false
+      
+      # Server Configuration
+      - key: PORT
+        value: 8080
+      - key: NO_PORT
+        value: False
+      - key: FQDN
+        value: 0.0.0.0
+      
+      # Other Settings (Optional)
+      - key: AUTO_FFILTER
+        value: True
+      - key: AUTO_DELETE
+        value: True
+      - key: SPELL_CHECK_REPLY
+        value: True
+      - key: IMDB
+        value: False
+      - key: PM_SEARCH
+        value: True
